@@ -1,10 +1,13 @@
-require "bundler"
-Bundler.setup
+require 'bundler'
+Bundler.setup(:default)
 
-require "sinatra"
+require 'sinatra'
+require 'haml'
 
-class MyTweetWeek
-  get "/" do
-    "My Tweet Week"
+class MyTweetWeek < Sinatra::Base
+  set :haml, :format => :html5, :attr_wrapper => "\""
+  
+  get '/' do
+    haml :index
   end
 end

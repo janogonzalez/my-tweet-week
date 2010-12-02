@@ -1,3 +1,3 @@
-require "my-tweet-week"
+require './my-tweet-week'
 
 run MyTweetWeek

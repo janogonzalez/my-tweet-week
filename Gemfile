@@ -1,9 +1,9 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem "sinatra"
-gem "haml"
+gem 'sinatra'
+gem 'haml'
 
 group :test do
-  gem "rspec"
-  gem "rack-test"
+  gem 'rspec'
+  gem 'rack-test'
 end
