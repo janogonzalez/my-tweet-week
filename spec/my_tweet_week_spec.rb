@@ -20,9 +20,9 @@ describe "MyTweetWeek" do
       last_response.should be_ok
     end
 
-    it "should respond to /resume" do
+    it "should respond to /resume and fail" do
       get '/resume'
-      last_response.should be_ok
+      last_response.should_not be_ok
     end
   end
 end

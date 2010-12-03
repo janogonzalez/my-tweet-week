@@ -41,9 +41,7 @@ class MyTweetWeek < Sinatra::Base
       config.oauth_token =  access_token.token
       config.oauth_token_secret = access_token.secret
     end
-    
-    session[:authenticated] = true
-    
+
     redirect '/resume'
   end
   
