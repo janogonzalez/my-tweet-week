@@ -70,7 +70,7 @@ class MyTweetWeek < Sinatra::Base
     
     search.clear
     
-    results = search.mentioning(@screen_name)
+    results = search.q("@#{@screen_name.gsub('@', '')}")
                     .since_date(monday)
                     .no_retweets
                     .per_page(100)
@@ -81,7 +81,7 @@ class MyTweetWeek < Sinatra::Base
     while search.next_page?
       results = search.fetch_next_page
       @number_of_mentions += results.size
-    end 
+    end
 
     haml :resume
   end
