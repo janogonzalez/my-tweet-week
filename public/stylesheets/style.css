@@ -115,11 +115,13 @@ h1 {
 }
 
 #container {
-	background-color: white;
+	background-color: #d5e8bc;
 	color: #222;
-	margin: 0 4em 0 4em;
+	margin: 1em 4em 1em 4em;
+	padding: 0.5em 2em 0.5em 2em;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
+	text-align: left;
 }
 
 h2 {
