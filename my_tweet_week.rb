@@ -71,7 +71,7 @@ class MyTweetWeek < Sinatra::Base
     search.clear
     
     results = search.mentioning(@screen_name)
-                    .since_date('2010-12-03')
+                    .since_date(monday)
                     .no_retweets
                     .per_page(100)
                     .fetch
