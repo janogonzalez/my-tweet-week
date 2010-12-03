@@ -1,15 +1,13 @@
 #container
   %p
-    = "@#{@screen_name}"
-    has tweeted
+    Hi
+    = "@#{@screen_name}!"
+    You have tweeted
     = @number_of_tweets
     = "#{@number_of_tweets == 1 ? 'time' : 'times'}"  
-    this week
-  %p
-    = "@#{@screen_name}"
-    has been mentioned
+    and have been mentioned
     = @number_of_mentions
     = "#{@number_of_mentions == 1 ? 'time' : 'times'}"
-    this week
+    since monday
 
   

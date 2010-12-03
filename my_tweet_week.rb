@@ -34,21 +34,17 @@ class MyTweetWeek < Sinatra::Base
     session[:request_token] = session[:request_token_secret] = nil
     
     access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
-
-    Twitter.configure do |config|
-      config.consumer_key = ENV['CONSUMER_KEY']
-      config.consumer_secret = ENV['CONSUMER_SECRET']
-      config.oauth_token =  access_token.token
-      config.oauth_token_secret = access_token.secret
-    end
+    
+    session[:access_token] = access_token.token
+    session[:access_secret] = access_token.secret
 
     redirect '/resume'
   end
   
   get '/resume' do
+    redirect '/'  unless authenticated?
     today = Date.today
     monday = today - today.cwday + 1
-    client = Twitter::Client.new
     search = Twitter::Search.new
     
     @screen_name = client.verify_credentials.screen_name
@@ -98,5 +94,20 @@ class MyTweetWeek < Sinatra::Base
       ENV['CONSUMER_SECRET'],
       :site => "https://api.twitter.com"
     )
+  end
+  
+  def client
+    Twitter.configure do |config|
+      config.consumer_key = ENV['CONSUMER_KEY']
+      config.consumer_secret = ENV['CONSUMER_SECRET']
+      config.oauth_token =  session[:access_token]
+      config.oauth_token_secret = session[:access_secret]
+    end
+    
+    @client ||= Twitter::Client.new
+  end
+  
+  def authenticated?
+    !session[:access_token].nil? && !session[:access_secret].nil?
   end
 end
