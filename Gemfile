@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'haml'
 gem 'twitter'
 gem 'oauth'
+gem 'json_pure'
 
 group :test do
   gem 'rspec'

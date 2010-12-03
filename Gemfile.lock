@@ -11,6 +11,7 @@ GEM
       faraday (~> 0.5.3)
     haml (3.0.24)
     hashie (0.4.0)
+    json_pure (1.4.6)
     multi_json (0.0.5)
     multi_xml (0.2.0)
     multipart-post (1.0.1)
@@ -44,6 +45,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  json_pure
   oauth
   rack-test
   rspec
