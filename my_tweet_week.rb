@@ -48,7 +48,7 @@ class MyTweetWeek < Sinatra::Base
     
     session[:request_token] = session[:request_token_secret] = nil 
     
-    @access_token = @request_token.get_access_token
+    @access_token = @request_token.get_access_token :oauth_verifier => params[:oauth_verifier]
     
     session[:access_token] = @access_token.token
     session[:access_token_tsecret] = @access_token.secret
