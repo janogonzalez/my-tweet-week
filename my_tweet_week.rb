@@ -8,7 +8,8 @@ require 'oauth'
 
 class MyTweetWeek < Sinatra::Base
   set :haml, :format => :html5, :attr_wrapper => '"'
-  enable :sessions
+  enable :sessions, :static
+  set :public, File.join(File.dirname(__FILE__), 'public')
   
   before do
     @consumer ||= OAuth::Consumer.new(
