@@ -103,30 +103,37 @@ input, select {
 
 /* webpage styles */
 body {
-	background-image: url("../images/background.png");
-	background-color: #222;
+	background-color: #fff;
 	font-family: "Trebuchet MS", Arial, sans-serif;
 	text-align: center;
 }
 
 h1 {
-	color: #fff;
-	font-size: 3em;
-	padding: 0.5em 0 0.5em 0;
+	color: #d9005b;
+	font-size: 4em;
+	padding: 0.2em 0 0.2em 0;
 }
 
-#main {
+#container {
 	background-color: white;
-	color: #333;
+	color: #222;
 	margin: 0 4em 0 4em;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 }
 
-p {
-	font-size: 2em;
-	padding: 1em 1em 1em 1em;
+h2 {
+	font-size: 1.5em;
 	font-weight: bold;
+	padding: 0.2em 0 0.2em 0;
+}
+
+#button-container {
+	padding: 1em 0 1em 0;
+}
+
+p {
+	font-size: 1em;
 }
 
 a:link, a:visited, a:active {

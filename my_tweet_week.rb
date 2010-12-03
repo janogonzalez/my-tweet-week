@@ -33,7 +33,7 @@ class MyTweetWeek < Sinatra::Base
   
   get '/login' do
     @request_token = @consumer.get_request_token(:oauth_callback => ENV['OAUTH_CALLBACK'])
-    
+
     session[:request_token] = @request_token.token
     session[:request_token_secret] = @request_token.secret
     
@@ -58,6 +58,8 @@ class MyTweetWeek < Sinatra::Base
   end
   
   get '/resume' do
+    @client = Twitter::Client.new(@access_token)
+
     haml :resume
   end
 end
