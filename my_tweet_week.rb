@@ -8,7 +8,7 @@ require 'oauth'
 
 class MyTweetWeek < Sinatra::Base
   set :haml, :format => :html5, :attr_wrapper => '"'
-  enable :sessions, :static
+  enable :sessions, :static, :raise_errors
   set :public, File.join(File.dirname(__FILE__), 'public')
 
   get '/' do
@@ -46,12 +46,48 @@ class MyTweetWeek < Sinatra::Base
   end
   
   get '/resume' do
-    @client = Twitter::Client.new
+    today = Date.today
+    monday = today - today.cwday + 1
+    client = Twitter::Client.new
+    search = Twitter::Search.new
     
-    @screen_name = @client.verify_credentials.screen_name
+    @screen_name = client.verify_credentials.screen_name
     @number_of_tweets = 0
+    @number_of_mentions = 0
+    
+    results = search.from(@screen_name)
+                    .since_date(monday)
+                    .no_retweets
+                    .per_page(100)
+                    .fetch
+                    
+    @number_of_tweets += results.size
+    
+    while search.next_page?
+      results = search.fetch_next_page
+      @number_of_tweets += results.size
+    end
+    
+    search.clear
+    
+    results = search.mentioning(@screen_name)
+                    .since_date('2010-12-03')
+                    .no_retweets
+                    .per_page(100)
+                    .fetch
+                   
+    @number_of_mentions += results.size
+    
+    while search.next_page?
+      results = search.fetch_next_page
+      @number_of_mentions += results.size
+    end 
 
     haml :resume
+  end
+  
+  error Twitter::Unauthorized do
+    redirect '/'
   end
   
   private

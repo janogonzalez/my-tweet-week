@@ -3,6 +3,13 @@
     = "@#{@screen_name}"
     has tweeted
     = @number_of_tweets
-    times this week
+    = "#{@number_of_tweets == 1 ? 'time' : 'times'}"  
+    this week
+  %p
+    = "@#{@screen_name}"
+    has been mentioned
+    = @number_of_mentions
+    = "#{@number_of_mentions == 1 ? 'time' : 'times'}"
+    this week
 
   
