@@ -86,6 +86,10 @@ class MyTweetWeek < Sinatra::Base
     redirect '/'
   end
   
+  not_found do
+    haml :not_found
+  end
+  
   private
   
   def consumer
